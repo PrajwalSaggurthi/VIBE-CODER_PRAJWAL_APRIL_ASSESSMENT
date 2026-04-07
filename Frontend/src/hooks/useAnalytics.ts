@@ -10,15 +10,16 @@ export function useAnalytics() {
   const [sources, setSources] = useState<TrafficSourceData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [days, setDays] = useState(30);
 
   const fetchAll = useCallback(async () => {
     try {
       setIsLoading(true);
       setError(null);
       const [ov, hm, src] = await Promise.all([
-        api.get<AnalyticsOverview>("/analytics/overview"),
-        api.get<HeatmapData[]>("/analytics/heatmap"),
-        api.get<TrafficSourceData[]>("/analytics/sources"),
+        api.get<AnalyticsOverview>(`/analytics/overview?days=${days}`),
+        api.get<HeatmapData[]>(`/analytics/heatmap?days=${days}`),
+        api.get<TrafficSourceData[]>(`/analytics/sources?days=${days}`),
       ]);
       setOverview(ov);
       setHeatmap(hm);
@@ -28,11 +29,11 @@ export function useAnalytics() {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [days]);
 
   useEffect(() => {
     fetchAll();
   }, [fetchAll]);
 
-  return { overview, heatmap, sources, isLoading, error, refetch: fetchAll };
+  return { overview, heatmap, sources, isLoading, error, refetch: fetchAll, days, setDays };
 }
