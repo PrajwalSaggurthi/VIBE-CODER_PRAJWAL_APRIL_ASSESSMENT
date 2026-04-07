@@ -5,6 +5,9 @@ from uuid import UUID
 from datetime import datetime
 from typing import Optional
 
+from app.schemas.link import LinkResponse
+from app.schemas.theme import ThemeResponse
+
 
 class TenantResponse(BaseModel):
     id: UUID
@@ -38,7 +41,8 @@ class PublicTenantInfo(BaseModel):
 
 class PublicProfileResponse(BaseModel):
     tenant: PublicTenantInfo
-    links: list = []
-    theme: Optional[dict] = None
+    links: list[LinkResponse] = []
+    theme: Optional[ThemeResponse] = None
 
     model_config = {"from_attributes": True}
+
