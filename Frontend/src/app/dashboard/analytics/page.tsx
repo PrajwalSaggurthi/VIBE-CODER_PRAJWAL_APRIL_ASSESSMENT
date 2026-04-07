@@ -24,12 +24,17 @@ import styles from "./analytics.module.css";
 const PIE_COLORS = ["#6366f1", "#8b5cf6", "#a78bfa", "#c4b5fd", "#10b981", "#f59e0b", "#ef4444", "#3b82f6", "#ec4899", "#6b7280"];
 
 export default function AnalyticsPage() {
-  const { overview, heatmap, sources, isLoading } = useAnalytics();
+  const { overview, heatmap, sources, isLoading, days, setDays } = useAnalytics();
 
-  if (isLoading) {
+  if (isLoading && !overview) {
     return (
       <div className={styles.page}>
-        <h1 className={styles.title}>Analytics</h1>
+        <div className={styles.header}>
+          <div>
+            <h1 className={styles.title}>Analytics</h1>
+            <p className={styles.subtitle}>Loading your data...</p>
+          </div>
+        </div>
         <div className={styles.statsGrid}>
           {[1, 2, 3].map((i) => (
             <Skeleton key={i} height="90px" borderRadius="var(--radius-xl)" />
@@ -52,8 +57,23 @@ export default function AnalyticsPage() {
   return (
     <div className={styles.page}>
       <div className={styles.header}>
-        <h1 className={styles.title}>Analytics</h1>
-        <p className={styles.subtitle}>Track your link performance over the last 30 days</p>
+        <div>
+          <h1 className={styles.title}>Analytics</h1>
+          <p className={styles.subtitle}>
+            Track your link performance over the {days === 0 ? "entire lifetime" : `last ${days} days`}
+          </p>
+        </div>
+        <select 
+          className={styles.dateFilter} 
+          value={days} 
+          onChange={(e) => setDays(Number(e.target.value))}
+          disabled={isLoading}
+        >
+          <option value={7}>Last 7 Days</option>
+          <option value={30}>Last 30 Days</option>
+          <option value={90}>Last 90 Days</option>
+          <option value={0}>All Time</option>
+        </select>
       </div>
 
       {/* Stats */}
@@ -80,9 +100,12 @@ export default function AnalyticsPage() {
         {/* Heatmap */}
         <Card className={styles.chartCard} padding="lg">
           <h2 className={styles.chartTitle}>Click Activity by Hour</h2>
-          <p className={styles.chartSubtitle}>24-hour click distribution (last 30 days)</p>
+          <p className={styles.chartSubtitle}>24-hour distribution ({days === 0 ? "All time" : `Last ${days} days`})</p>
           <div className={styles.chartWrap}>
-            <ResponsiveContainer width="100%" height={280}>
+            {isLoading ? (
+              <div className={styles.loadingChart}><Skeleton height="100%" borderRadius="var(--radius-lg)" /></div>
+            ) : (
+              <ResponsiveContainer width="100%" height={280}>
               <BarChart data={fullHeatmap} margin={{ top: 8, right: 8, bottom: 0, left: -16 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
                 <XAxis
@@ -109,6 +132,7 @@ export default function AnalyticsPage() {
                 <Bar dataKey="clicks" fill="#6366f1" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
+            )}
           </div>
         </Card>
 
@@ -117,7 +141,9 @@ export default function AnalyticsPage() {
           <h2 className={styles.chartTitle}>Traffic Sources</h2>
           <p className={styles.chartSubtitle}>Where your visitors come from</p>
           <div className={styles.chartWrap}>
-            {sources.length > 0 ? (
+            {isLoading ? (
+              <div className={styles.loadingChart}><Skeleton height="100%" borderRadius="var(--radius-lg)" /></div>
+            ) : sources.length > 0 ? (
               <ResponsiveContainer width="100%" height={280}>
                 <PieChart>
                   <Pie

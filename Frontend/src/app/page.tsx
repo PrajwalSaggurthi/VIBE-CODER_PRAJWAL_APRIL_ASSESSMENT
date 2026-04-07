@@ -40,25 +40,31 @@ export default function LandingPage() {
 
         {/* Decorative preview cards */}
         <div className={styles.previewContainer}>
-          <div className={styles.previewCard} style={{ background: "#0a0a0a", color: "#e0e0e0" }}>
-            <div className={styles.previewAvatar} style={{ background: "#00f5d4" }}>NB</div>
-            <div className={styles.previewName}>NeonByte</div>
-            <div className={styles.previewLink} style={{ background: "#00f5d4", color: "#0a0a0a" }}>Twitch Stream</div>
-            <div className={styles.previewLink} style={{ border: "1.5px solid #00f5d4", color: "#00f5d4", background: "transparent" }}>YouTube</div>
-          </div>
-          <div className={`${styles.previewCard} ${styles.previewCardCenter}`} style={{ background: "#ffffff", color: "#1a1a2e" }}>
-            <div className={styles.previewAvatar} style={{ background: "#6366f1" }}>PS</div>
-            <div className={styles.previewName}>Prajwal S.</div>
-            <div className={styles.previewLink} style={{ background: "#1a1a2e", color: "#fff" }}>Portfolio</div>
-            <div className={styles.previewLink} style={{ background: "#1a1a2e", color: "#fff" }}>GitHub</div>
-            <div className={styles.previewLink} style={{ background: "#1a1a2e", color: "#fff" }}>Blog</div>
-          </div>
-          <div className={styles.previewCard} style={{ background: "#2d1b69", color: "#ffffff" }}>
-            <div className={styles.previewAvatar} style={{ background: "#ff6b6b" }}>LC</div>
-            <div className={styles.previewName}>Luna Studio</div>
-            <div className={styles.previewLink} style={{ background: "#ff6b6b", color: "#fff", borderRadius: "999px" }}>Our Work</div>
-            <div className={styles.previewLink} style={{ background: "#feca57", color: "#2d1b69", borderRadius: "999px" }}>Book a Call</div>
-          </div>
+          <Link href="/site/neonbyte" style={{textDecoration: 'none'}}>
+            <div className={styles.previewCard} style={{ background: "#0a0a0a", color: "#e0e0e0" }}>
+              <div className={styles.previewAvatar} style={{ background: "#00f5d4" }}>NB</div>
+              <div className={styles.previewName}>NeonByte</div>
+              <div className={styles.previewLink} style={{ background: "#00f5d4", color: "#0a0a0a" }}>Twitch Stream</div>
+              <div className={styles.previewLink} style={{ border: "1.5px solid #00f5d4", color: "#00f5d4", background: "transparent" }}>YouTube</div>
+            </div>
+          </Link>
+          <Link href="/site/prajwal" style={{textDecoration: 'none'}}>
+            <div className={`${styles.previewCard} ${styles.previewCardCenter}`} style={{ background: "#ffffff", color: "#1a1a2e" }}>
+              <div className={styles.previewAvatar} style={{ background: "#6366f1" }}>PS</div>
+              <div className={styles.previewName}>Prajwal S.</div>
+              <div className={styles.previewLink} style={{ background: "#1a1a2e", color: "#fff" }}>Portfolio</div>
+              <div className={styles.previewLink} style={{ background: "#1a1a2e", color: "#fff" }}>GitHub</div>
+              <div className={styles.previewLink} style={{ background: "#1a1a2e", color: "#fff" }}>Blog</div>
+            </div>
+          </Link>
+          <Link href="/site/luna-studio" style={{textDecoration: 'none'}}>
+            <div className={styles.previewCard} style={{ background: "#2d1b69", color: "#ffffff" }}>
+              <div className={styles.previewAvatar} style={{ background: "#ff6b6b" }}>LC</div>
+              <div className={styles.previewName}>Luna Studio</div>
+              <div className={styles.previewLink} style={{ background: "#ff6b6b", color: "#fff", borderRadius: "999px" }}>Our Work</div>
+              <div className={styles.previewLink} style={{ background: "#feca57", color: "#2d1b69", borderRadius: "999px" }}>Book a Call</div>
+            </div>
+          </Link>
         </div>
       </section>
 

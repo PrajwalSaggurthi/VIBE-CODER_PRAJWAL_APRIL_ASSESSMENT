@@ -46,16 +46,25 @@ async def record_click(
 
 @router.get("/overview", response_model=AnalyticsOverview)
 async def get_overview(
+    days: int | None = 30,
     current_user: dict = Depends(get_current_user),
     db: AsyncSession = Depends(get_tenant_db),
 ):
     """Get analytics overview for the current tenant."""
     tenant_id = current_user["tenant_id"]
+    
+    # Date filtering
+    date_filter = []
+    if days and days > 0:
+        start_date = datetime.now(timezone.utc) - timedelta(days=days)
+        date_filter.append(ClickEvent.clicked_at >= start_date)
 
     # Total clicks
-    total = await db.execute(
-        select(func.count(ClickEvent.id)).where(ClickEvent.tenant_id == tenant_id)
-    )
+    total_query = select(func.count(ClickEvent.id)).where(ClickEvent.tenant_id == tenant_id)
+    if date_filter:
+        total_query = total_query.where(*date_filter)
+        
+    total = await db.execute(total_query)
     total_clicks = total.scalar() or 0
 
     # Clicks today
@@ -68,14 +77,21 @@ async def get_overview(
     clicks_today = today.scalar() or 0
 
     # Top links
-    top_links_result = await db.execute(
+    top_links_query = (
         select(Link.title, func.count(ClickEvent.id).label("clicks"))
         .join(ClickEvent, ClickEvent.link_id == Link.id)
         .where(Link.tenant_id == tenant_id)
+    )
+    if date_filter:
+        top_links_query = top_links_query.where(*date_filter)
+        
+    top_links_query = (
+        top_links_query
         .group_by(Link.id, Link.title)
         .order_by(func.count(ClickEvent.id).desc())
         .limit(5)
     )
+    top_links_result = await db.execute(top_links_query)
     top_links = [
         {"title": row.title, "clicks": row.clicks}
         for row in top_links_result.all()
@@ -90,45 +106,53 @@ async def get_overview(
 
 @router.get("/heatmap", response_model=list[HeatmapData])
 async def get_heatmap(
+    days: int | None = 30,
     current_user: dict = Depends(get_current_user),
     db: AsyncSession = Depends(get_tenant_db),
 ):
-    """Get 24-hour click heatmap for the last 30 days."""
+    """Get 24-hour click heatmap for the specified time period."""
     tenant_id = current_user["tenant_id"]
-    thirty_days_ago = datetime.now(timezone.utc) - timedelta(days=30)
 
-    result = await db.execute(
-        select(
-            func.extract("hour", ClickEvent.clicked_at).label("hour"),
-            func.count(ClickEvent.id).label("clicks"),
-        )
-        .where(ClickEvent.tenant_id == tenant_id)
-        .where(ClickEvent.clicked_at >= thirty_days_ago)
-        .group_by(text("hour"))
-        .order_by(text("hour"))
-    )
+    query = select(
+        func.extract("hour", ClickEvent.clicked_at).label("hour"),
+        func.count(ClickEvent.id).label("clicks"),
+    ).where(ClickEvent.tenant_id == tenant_id)
+    
+    if days and days > 0:
+        start_date = datetime.now(timezone.utc) - timedelta(days=days)
+        query = query.where(ClickEvent.clicked_at >= start_date)
+        
+    query = query.group_by(text("hour")).order_by(text("hour"))
 
+    result = await db.execute(query)
     return [HeatmapData(hour=int(row.hour), clicks=row.clicks) for row in result.all()]
 
 
 @router.get("/sources", response_model=list[TrafficSourceData])
 async def get_traffic_sources(
+    days: int | None = 30,
     current_user: dict = Depends(get_current_user),
     db: AsyncSession = Depends(get_tenant_db),
 ):
     """Get traffic source breakdown."""
     tenant_id = current_user["tenant_id"]
 
-    result = await db.execute(
-        select(
-            ClickEvent.referrer,
-            func.count(ClickEvent.id).label("clicks"),
-        )
-        .where(ClickEvent.tenant_id == tenant_id)
+    query = select(
+        ClickEvent.referrer,
+        func.count(ClickEvent.id).label("clicks"),
+    ).where(ClickEvent.tenant_id == tenant_id)
+    
+    if days and days > 0:
+        start_date = datetime.now(timezone.utc) - timedelta(days=days)
+        query = query.where(ClickEvent.clicked_at >= start_date)
+
+    query = (
+        query
         .group_by(ClickEvent.referrer)
         .order_by(func.count(ClickEvent.id).desc())
         .limit(10)
     )
+    result = await db.execute(query)
 
     return [
         TrafficSourceData(source=row.referrer or "direct", clicks=row.clicks)

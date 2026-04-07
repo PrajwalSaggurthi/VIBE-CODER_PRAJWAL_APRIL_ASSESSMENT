@@ -20,8 +20,8 @@ TENANTS_DATA = [
         "name": "Prajwal Saggurthi",
         "slug": "prajwal",
         "bio": "Full-stack developer & open source enthusiast. Building cool stuff with code.",
-        "social_links": {"twitter": "https://twitter.com/prajwal", "github": "https://github.com/prajwal"},
-        "email": "prajwal@linkhub.dev",
+        "social_links": {"twitter": "https://twitter.com/prajwal", "github": "https://github.com/PrajwalSaggurthi"},
+        "email": "prajwalsaggurthi1@gmail.com",
         "theme": {
             "preset_name": "minimal",
             "primary_color": "#1a1a2e",
@@ -34,10 +34,10 @@ TENANTS_DATA = [
         },
         "links": [
             {"title": "My Portfolio", "url": "https://prajwal.dev", "icon": "globe"},
-            {"title": "GitHub", "url": "https://github.com/prajwal", "icon": "github"},
-            {"title": "LinkedIn", "url": "https://linkedin.com/in/prajwal", "icon": "linkedin"},
+            {"title": "GitHub", "url": "https://github.com/PrajwalSaggurthi", "icon": "github"},
+            {"title": "LinkedIn", "url": "https://www.linkedin.com/in/prajwalsaggurthi/", "icon": "linkedin"},
             {"title": "Tech Blog", "url": "https://blog.prajwal.dev", "icon": "pencil"},
-            {"title": "Resume (PDF)", "url": "https://prajwal.dev/resume.pdf", "icon": "file"},
+            {"title": "Resume (PDF)", "url": "https://drive.google.com/file/d/14mfnpdAYmTAi-p9rxndjSz427RDU-A1z/view?usp=sharing", "icon": "file"},
         ],
     },
     {
