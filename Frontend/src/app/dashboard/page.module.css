@@ -1,7 +1,7 @@
 .page {
   max-width: 800px;
   margin: 0 auto;
-  animation: fadeIn 300ms ease-out;
+  animation: fadeInUp 400ms ease-out;
 }
 
 .header {
@@ -48,9 +48,9 @@
   gap: var(--space-3);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (max-width: 640px) {

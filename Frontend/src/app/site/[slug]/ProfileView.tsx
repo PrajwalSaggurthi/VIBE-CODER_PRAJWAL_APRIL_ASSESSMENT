@@ -2,6 +2,7 @@
 
 import type { PublicProfileResponse } from "@/types/tenant";
 import { api } from "@/lib/api";
+import { getContrastColor } from "@/lib/utils";
 import {
   FiGlobe,
   FiGithub,
@@ -42,7 +43,7 @@ export default function ProfileView({ profile }: { profile: PublicProfileRespons
     t.button_style === "square" ? "4px" : "12px";
 
   const btnBg = t.button_style === "outline" ? "transparent" : t.primary_color;
-  const btnColor = t.button_style === "outline" ? t.primary_color : "#ffffff";
+  const btnColor = t.button_style === "outline" ? t.primary_color : getContrastColor(t.primary_color);
   const btnBorder = t.button_style === "outline" ? `2px solid ${t.primary_color}` : "none";
 
   return (

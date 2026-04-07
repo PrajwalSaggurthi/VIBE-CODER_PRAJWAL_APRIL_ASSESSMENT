@@ -1,4 +1,4 @@
-.page { max-width: 1000px; margin: 0 auto; animation: fadeIn 300ms ease-out; }
+.page { max-width: 1000px; margin: 0 auto; animation: fadeInUp 400ms ease-out; }
 .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: var(--space-6); gap: var(--space-4); }
 .title { font-size: var(--text-2xl); font-weight: 800; letter-spacing: -0.03em; }
 .subtitle { font-size: var(--text-sm); color: var(--color-text-muted); margin-top: 2px; }
@@ -79,4 +79,4 @@
   .grid { grid-template-columns: 1fr 320px; }
 }
 
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
