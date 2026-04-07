@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
-import { FiMail, FiLock, FiUser, FiAtSign } from "react-icons/fi";
+import { FiMail, FiLock, FiUser, FiAtSign, FiArrowLeft } from "react-icons/fi";
 import styles from "./auth.module.css";
 
 export default function RegisterPage() {
@@ -48,6 +48,9 @@ export default function RegisterPage() {
   return (
     <div className={styles.container}>
       <div className={styles.formCard}>
+        <Link href="/" className={styles.backLink}>
+          <FiArrowLeft /> Back
+        </Link>
         <div className={styles.header}>
           <Link href="/" className={styles.logo}>
             <span className={styles.logoIcon}>⚡</span>

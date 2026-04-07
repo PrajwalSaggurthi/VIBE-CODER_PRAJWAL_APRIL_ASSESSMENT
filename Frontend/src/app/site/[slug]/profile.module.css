@@ -156,15 +156,30 @@
   animation: fadeInUp 400ms 400ms ease-out both;
 }
 
-.footerLink {
-  font-size: var(--text-xs);
-  opacity: 0.4;
+.brandingLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 800;
   text-decoration: none;
-  transition: opacity var(--transition-fast);
+  opacity: 0.5;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
 }
 
-.footerLink:hover {
-  opacity: 0.7;
+.brandingLink:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+.brandingIcon {
+  font-size: 1.4em;
+}
+
+.brandingText {
+  letter-spacing: -0.02em;
 }
 
 /* Animations */

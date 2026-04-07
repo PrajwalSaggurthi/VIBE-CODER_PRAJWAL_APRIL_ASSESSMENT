@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import type { PublicProfileResponse } from "@/types/tenant";
 import { api } from "@/lib/api";
 import { getContrastColor } from "@/lib/utils";
@@ -133,9 +134,10 @@ export default function ProfileView({ profile }: { profile: PublicProfileRespons
 
         {/* Footer */}
         <footer className={styles.footer}>
-          <a href="/" className={styles.footerLink} style={{ color: t.text_color }}>
-            ⚡ Made with LinkHub
-          </a>
+          <Link href="/" className={styles.brandingLink} style={{ color: t.text_color }}>
+            <span className={styles.brandingIcon}>⚡</span> 
+            <span className={styles.brandingText}>LinkHub</span>
+          </Link>
         </footer>
       </div>
     </div>

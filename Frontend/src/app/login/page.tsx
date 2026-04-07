@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
-import { FiMail, FiLock } from "react-icons/fi";
+import { FiMail, FiLock, FiArrowLeft } from "react-icons/fi";
 import styles from "./auth.module.css";
 
 export default function LoginPage() {
@@ -35,6 +35,9 @@ export default function LoginPage() {
   return (
     <div className={styles.container}>
       <div className={styles.formCard}>
+        <Link href="/" className={styles.backLink}>
+          <FiArrowLeft /> Back
+        </Link>
         <div className={styles.header}>
           <Link href="/" className={styles.logo}>
             <span className={styles.logoIcon}>⚡</span>
