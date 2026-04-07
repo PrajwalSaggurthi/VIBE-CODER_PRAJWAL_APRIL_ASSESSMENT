@@ -1,0 +1,58 @@
+THE CHALLENGE: "LINKHUB" MULTI-TENANT PLATFORM
+Build a white-label "Link in Bio" platform (similar to Linktree/Carrd) with true multi-tenant
+isolation.
+Core Concept
+Each tenant receives a unique subdomain (e.g., tenant.yourplatform.com) hosting their personalized
+link directory. Tenants can customize themes, reorder links via drag-and-drop, and view analytics
+dashboards.
+Critical Constraint: No external datasets will be provided. You must architect your own data models
+and generate realistic mock data to demonstrate functionality.
+TECHNICAL REQUIREMENTS
+A. FRONTEND ARCHITECTURE
+Framework: React/Next.js or Vue/Nuxt (your choice)
+Key Features:
+• Tenant Theming Engine: Dynamic CSS variable injection via API response. Support for:
+primary colors, fonts, button styles, and background patterns/images.
+• Drag-and-Drop Interface: Intuitive link reordering with visual feedback (React DnD,
+@dnd-kit, or similar).
+• Responsive Design: Must function flawlessly on mobile (where 80% of traffic originates).
+• Analytics Visualization: Interactive charts (Recharts, D3, or Chart.js) displaying:
+• Click heatmaps by time of day (24-hour visualization)
+• Link performance rankings
+• Traffic source breakdown (simulated data)
+B. BACKEND ARCHITECTURE
+Framework: Node.js (Express/NestJS), Python (FastAPI/Django), or Go
+Security Requirements:
+• Subdomain Routing Middleware: Extract tenant identity from *.yourdomain.com and scope
+all downstream operations.
+• Multi-Tenant Authentication: JWT tokens must include tenant scoping claims. Implement
+middleware that strictly prevents cross-tenant data access (Tenant A cannot access Tenant B's
+dashboard via token manipulation).
+• Row-Level Security (RLS): Database must enforce tenant isolation at the query level, not
+just application logic.
+
+• API Security: Protection against IDOR (Insecure Direct Object Reference) attacks—users
+cannot increment IDs to access other tenants' resources.
+C. DATABASE DESIGN
+Platform: PostgreSQL (required for RLS)
+Schema Requirements:
+• Tenant Isolation Strategy: Implement either:
+• Row-Level Security (RLS) policies on shared tables, OR
+• Schema-per-tenant architecture
+• Analytics Pipeline: Efficient storage of click events with aggregation strategy (materialized
+views, scheduled jobs, or time-series optimization).
+• Data Integrity: Foreign key constraints that respect tenant boundaries.
+DESIGN & UX REQUIREMENTS (CRITICAL)
+You must demonstrate:
+• Visual Polish: The tenant-facing profile pages should look market-ready, not like admin
+dashboards. Attention to typography, spacing, and color harmony.
+• Micro-interactions: Loading states, hover effects, and transition animations that feel native
+and responsive.
+• Theming Flexibility: Your theme engine should allow tenants to create visually distinct
+pages (e.g., a minimalist black/white theme vs. a vibrant gradient theme) without breaking
+layout.
+• Mobile-First Aesthetics: Thumb-friendly tap targets, readable fonts, and optimized image
+handling.
+• Empty States: Thoughtful UX for new tenants (onboarding flow, placeholder content).
+Deliverable: Include screenshots of at least three distinct visual themes applied to the same link
+structure to prove your theming system works.
