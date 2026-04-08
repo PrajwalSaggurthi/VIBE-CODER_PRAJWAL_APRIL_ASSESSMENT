@@ -1,6 +1,10 @@
 /* Constants shared across the app. */
 
-export const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api/v1";
+// Ensure API_URL always starts with / or http to prevent relative path resolution issues
+const rawApiUrl = process.env.NEXT_PUBLIC_API_URL || "/api/v1";
+export const API_URL = rawApiUrl.startsWith("http") || rawApiUrl.startsWith("/")
+  ? rawApiUrl
+  : `/${rawApiUrl}`;
 export const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
 export const STORAGE_KEYS = {
