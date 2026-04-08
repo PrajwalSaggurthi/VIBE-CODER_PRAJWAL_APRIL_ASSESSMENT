@@ -10,7 +10,7 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Features](#-features)
 - [Architecture](#-architecture)
@@ -35,7 +35,7 @@
 
 ---
 
-## ✨ Features
+## Features
 
 ### Core Platform
 - **Multi-Tenant Architecture** — Each tenant gets a unique slug/subdomain with fully isolated data
@@ -57,7 +57,7 @@
 
 ---
 
-## 🏗 Architecture
+## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -111,7 +111,7 @@
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```
 VIBE-CODER_PRAJWAL_APRIL_ASSESSMENT/
@@ -184,7 +184,7 @@ VIBE-CODER_PRAJWAL_APRIL_ASSESSMENT/
 
 ---
 
-## 📦 Prerequisites
+## Prerequisites
 
 | Tool | Version | Installation |
 |------|---------|-------------|
@@ -196,7 +196,7 @@ VIBE-CODER_PRAJWAL_APRIL_ASSESSMENT/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Clone the Repository
 
@@ -300,7 +300,7 @@ Once both servers are running:
 
 ---
 
-## 🔐 Environment Variables
+## Environment Variables
 
 ### Backend (`Backend/.env`)
 
@@ -462,7 +462,7 @@ Base URL: `http://localhost:8000/api/v1`
 
 ---
 
-## 🌱 Seeding Mock Data
+## Seeding Mock Data
 
 The seed script creates **3 distinct tenants** with links, themes, and realistic click analytics data:
 
@@ -486,7 +486,7 @@ Each tenant receives:
 
 ---
 
-## 🔒 Multi-Tenant Isolation
+## Multi-Tenant Isolation
 
 LinkHub implements **defense-in-depth** multi-tenant security:
 
@@ -516,7 +516,7 @@ Application-level guards verify that requested resource IDs belong to the authen
 
 ---
 
-## 🎨 Theming Engine
+## Theming Engine
 
 The theming system uses **CSS custom properties** injected dynamically from the API response:
 
@@ -539,7 +539,7 @@ The theming system uses **CSS custom properties** injected dynamically from the 
 
 ---
 
-## 🚢 Deployment
+## Deployment
 
 ### Vercel (Recommended)
 
@@ -585,7 +585,7 @@ For `tenant.yourdomain.com` routing:
 
 ---
 
-## 🐳 Docker (Local Development)
+## Docker (Local Development)
 
 The `docker-compose.yml` provides a local PostgreSQL instance for development:
 
@@ -636,19 +636,13 @@ docker-compose down -v
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/my-feature`
 3. Commit your changes: `git commit -m 'feat: add my feature'`
 4. Push to the branch: `git push origin feature/my-feature`
 5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is built as part of an assessment challenge. All rights reserved.
 
 ---
 
