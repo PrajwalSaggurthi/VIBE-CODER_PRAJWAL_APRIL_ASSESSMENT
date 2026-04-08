@@ -2,6 +2,7 @@
   "buildCommand": "cd Frontend && npm run build",
   "outputDirectory": "Frontend/.next",
   "installCommand": "cd Frontend && npm install",
+  "framework": "nextjs",
   "rewrites": [
     {
       "source": "/api/v1/:path*",
