@@ -47,3 +47,5 @@ htmlcov/
 # ── Misc ──────────────────────────────────────
 *.log
 *.pid
+Backend/env_upload
+Frontend/env_upload

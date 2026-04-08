@@ -4,11 +4,14 @@
   "installCommand": "cd Frontend && npm install",
   "framework": "nextjs",
   "rewrites": [
-    { "source": "/api/v1/:path*", "destination": "/api/index" }
+    {
+      "source": "/api/v1/:path*",
+      "destination": "/api/index"
+    }
   ],
   "functions": {
     "api/index.py": {
-      "runtime": "python3.10",
+      "runtime": "@vercel/python@3.10.19",
       "maxDuration": 30
     }
   }
