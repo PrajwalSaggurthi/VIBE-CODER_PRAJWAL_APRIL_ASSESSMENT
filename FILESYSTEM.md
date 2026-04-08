@@ -1,7 +1,7 @@
 # LinkHub — Filesystem Structure
 
-> **Last Updated**: 2026-04-07  
-> **Status**: 🟡 Pre-Scaffolding  
+> **Last Updated**: 2026-04-08  
+> **Status**: 🟢 Active Development  
 > This document is a living tracker of every file and folder in the project. It is updated as we build.
 
 ---
@@ -22,14 +22,14 @@
 
 ```
 VIBE-CODER_PRAJWAL_APRIL_ASSESSMENT/
-├── 📁 Frontend/                              🟡 Next.js 14 App Router
-├── 📁 Backend/                               🟡 FastAPI (Python 3.10)
-├── 📄 vercel.json                            🟡 Vercel monorepo config
-├── 📄 docker-compose.yml                     🟡 Local dev PostgreSQL
+├── 📁 Frontend/                              ✅ Next.js 16 App Router
+├── 📁 Backend/                               ✅ FastAPI (Python 3.10)
+├── 📄 vercel.json                            ✅ Vercel monorepo config
+├── 📄 docker-compose.yml                     ✅ Local dev PostgreSQL
 ├── 📄 .gitignore                             ✅ Git ignore rules
-├── 📄 .env.example                           🟡 Root env template
 ├── 📄 README.md                              ✅ Project README
 ├── 📄 FILESYSTEM.md                          ✅ This file
+├── 📄 implementation_plan.md                 ✅ Detailed implementation plan
 ├── 📄 challenge.txt                          ✅ Original challenge spec
 └── 📄 placeholder.txt                        ✅ Placeholder
 ```
@@ -39,99 +39,87 @@ VIBE-CODER_PRAJWAL_APRIL_ASSESSMENT/
 ## Frontend/
 
 ```
-Frontend/                                      🟡 NOT YET SCAFFOLDED
-├── 📁 public/
-│   ├── 📁 fonts/                             🟡 Self-hosted Inter, Outfit
-│   ├── 📁 images/                            🟡 Static assets
-│   └── 📄 favicon.ico                        🟡
+Frontend/                                      ✅ SCAFFOLDED
 ├── 📁 src/
 │   ├── 📁 app/
-│   │   ├── 📁 (marketing)/                   🟡 Landing page route group
-│   │   │   ├── 📄 page.tsx                   🟡
-│   │   │   └── 📄 layout.tsx                 🟡
-│   │   ├── 📁 (auth)/                        🟡 Auth route group
-│   │   │   ├── 📁 login/
-│   │   │   │   └── 📄 page.tsx               🟡
-│   │   │   ├── 📁 register/
-│   │   │   │   └── 📄 page.tsx               🟡
-│   │   │   └── 📄 layout.tsx                 🟡
-│   │   ├── 📁 dashboard/                     🟡 Tenant dashboard
-│   │   │   ├── 📄 page.tsx                   🟡 Link management
+│   │   ├── 📄 layout.tsx                     ✅ Root layout
+│   │   ├── 📄 globals.css                    ✅ Global styles + CSS variables
+│   │   ├── 📄 page.tsx                       ✅ Landing page
+│   │   ├── 📄 landing.module.css             ✅ Landing page styles
+│   │   ├── 📄 providers.tsx                  ✅ Client providers
+│   │   ├── 📄 not-found.tsx                  ✅ 404 page
+│   │   ├── 📁 login/
+│   │   │   ├── 📄 page.tsx                   ✅ Login page
+│   │   │   └── 📄 auth.module.css            ✅ Auth styles
+│   │   ├── 📁 register/
+│   │   │   ├── 📄 page.tsx                   ✅ Registration page
+│   │   │   └── 📄 auth.module.css            ✅ Auth styles
+│   │   ├── 📁 dashboard/
+│   │   │   ├── 📄 page.tsx                   ✅ Link management (CRUD + D&D)
+│   │   │   ├── 📄 page.module.css            ✅ Dashboard page styles
+│   │   │   ├── 📄 layout.tsx                 ✅ Dashboard shell + sidebar
+│   │   │   ├── 📄 dashboard.module.css       ✅ Dashboard layout styles
 │   │   │   ├── 📁 analytics/
-│   │   │   │   └── 📄 page.tsx               🟡
-│   │   │   ├── 📁 settings/
-│   │   │   │   └── 📄 page.tsx               🟡
+│   │   │   │   ├── 📄 page.tsx               ✅ Analytics charts
+│   │   │   │   └── 📄 analytics.module.css   ✅
 │   │   │   ├── 📁 appearance/
-│   │   │   │   └── 📄 page.tsx               🟡 Theme customization
-│   │   │   └── 📄 layout.tsx                 🟡 Dashboard shell
-│   │   ├── 📁 site/
-│   │   │   └── 📁 [slug]/
-│   │   │       └── 📄 page.tsx               🟡 Public tenant profile
-│   │   ├── 📄 layout.tsx                     🟡 Root layout
-│   │   ├── 📄 globals.css                    🟡 Global styles
-│   │   └── 📄 not-found.tsx                  🟡
+│   │   │   │   ├── 📄 page.tsx               ✅ Theme customization
+│   │   │   │   └── 📄 appearance.module.css  ✅
+│   │   │   └── 📁 settings/
+│   │   │       ├── 📄 page.tsx               ✅ Profile settings
+│   │   │       └── 📄 settings.module.css    ✅
+│   │   └── 📁 site/
+│   │       └── 📁 [slug]/
+│   │           ├── 📄 page.tsx               ✅ Public tenant profile (SSR)
+│   │           ├── 📄 ProfileView.tsx        ✅ Client-side profile view
+│   │           └── 📄 profile.module.css     ✅ Profile styles
 │   ├── 📁 components/
-│   │   ├── 📁 ui/                            🟡 UI primitives
-│   │   │   ├── 📄 Button.tsx                 🟡
-│   │   │   ├── 📄 Card.tsx                   🟡
-│   │   │   ├── 📄 Input.tsx                  🟡
-│   │   │   ├── 📄 Modal.tsx                  🟡
-│   │   │   ├── 📄 Avatar.tsx                 🟡
-│   │   │   ├── 📄 Badge.tsx                  🟡
-│   │   │   ├── 📄 Skeleton.tsx               🟡
-│   │   │   └── 📄 Toast.tsx                  🟡
-│   │   ├── 📁 dashboard/                     🟡
-│   │   │   ├── 📄 Sidebar.tsx                🟡
-│   │   │   ├── 📄 LinkCard.tsx               🟡
-│   │   │   ├── 📄 LinkEditor.tsx             🟡
-│   │   │   ├── 📄 LinkList.tsx               🟡
-│   │   │   ├── 📄 ThemePreview.tsx           🟡
-│   │   │   ├── 📄 ThemeControls.tsx          🟡
-│   │   │   └── 📄 StatsCard.tsx              🟡
-│   │   ├── 📁 analytics/                     🟡
-│   │   │   ├── 📄 ClickHeatmap.tsx           🟡
-│   │   │   ├── 📄 LinkRanking.tsx            🟡
-│   │   │   ├── 📄 TrafficSources.tsx         🟡
-│   │   │   └── 📄 DateRangePicker.tsx        🟡
-│   │   ├── 📁 profile/                       🟡 Public profile components
-│   │   │   ├── 📄 ProfileHeader.tsx          🟡
-│   │   │   ├── 📄 LinkButton.tsx             🟡
-│   │   │   ├── 📄 SocialIcons.tsx            🟡
-│   │   │   └── 📄 ProfileFooter.tsx          🟡
-│   │   └── 📁 shared/                        🟡
-│   │       ├── 📄 Navbar.tsx                 🟡
-│   │       ├── 📄 Footer.tsx                 🟡
-│   │       └── 📄 EmptyState.tsx             🟡
-│   ├── 📁 hooks/                             🟡
-│   │   ├── 📄 useAuth.ts                     🟡
-│   │   ├── 📄 useLinks.ts                    🟡
-│   │   ├── 📄 useTheme.ts                    🟡
-│   │   ├── 📄 useAnalytics.ts                🟡
-│   │   └── 📄 useDragAndDrop.ts              🟡
-│   ├── 📁 lib/                               🟡
-│   │   ├── 📄 api.ts                         🟡 API client
-│   │   ├── 📄 auth.ts                        🟡 JWT utilities
-│   │   ├── 📄 constants.ts                   🟡
-│   │   ├── 📄 utils.ts                       🟡
-│   │   └── 📄 themes.ts                      🟡 Preset themes
-│   ├── 📁 types/                             🟡
-│   │   ├── 📄 api.ts                         🟡
-│   │   ├── 📄 tenant.ts                      🟡
-│   │   ├── 📄 link.ts                        🟡
-│   │   ├── 📄 analytics.ts                   🟡
-│   │   └── 📄 theme.ts                       🟡
-│   ├── 📁 styles/                            🟡
-│   │   ├── 📄 variables.css                  🟡 Design tokens
-│   │   ├── 📄 animations.css                 🟡 Keyframes
-│   │   └── 📁 themes/                        🟡
-│   │       ├── 📄 minimal.css                🟡
-│   │       ├── 📄 vibrant.css                🟡
-│   │       └── 📄 neon.css                   🟡
-│   └── 📄 middleware.ts                      🟡 Subdomain router
-├── 📄 next.config.js                         🟡
-├── 📄 tsconfig.json                          🟡
-├── 📄 package.json                           🟡
-└── 📄 .env.local.example                     🟡
+│   │   ├── 📁 ui/                            ✅ UI primitives
+│   │   │   ├── 📄 Avatar.tsx                 ✅
+│   │   │   ├── 📄 Avatar.module.css          ✅
+│   │   │   ├── 📄 Badge.tsx                  ✅
+│   │   │   ├── 📄 Badge.module.css           ✅
+│   │   │   ├── 📄 Button.tsx                 ✅
+│   │   │   ├── 📄 Button.module.css          ✅
+│   │   │   ├── 📄 Card.tsx                   ✅
+│   │   │   ├── 📄 Card.module.css            ✅
+│   │   │   ├── 📄 Input.tsx                  ✅
+│   │   │   ├── 📄 Input.module.css           ✅
+│   │   │   ├── 📄 Modal.tsx                  ✅
+│   │   │   ├── 📄 Modal.module.css           ✅
+│   │   │   ├── 📄 Skeleton.tsx               ✅
+│   │   │   └── 📄 Skeleton.module.css        ✅
+│   │   ├── 📁 dashboard/                     ✅
+│   │   │   ├── 📄 LinkCard.tsx               ✅
+│   │   │   ├── 📄 LinkCard.module.css        ✅
+│   │   │   ├── 📄 LinkEditor.tsx             ✅
+│   │   │   ├── 📄 LinkEditor.module.css      ✅
+│   │   │   ├── 📄 StatsCard.tsx              ✅
+│   │   │   └── 📄 StatsCard.module.css       ✅
+│   │   └── 📁 shared/                        ✅
+│   │       ├── 📄 EmptyState.tsx             ✅
+│   │       └── 📄 EmptyState.module.css      ✅
+│   ├── 📁 hooks/                             ✅
+│   │   ├── 📄 useAuth.tsx                    ✅
+│   │   ├── 📄 useLinks.ts                    ✅
+│   │   └── 📄 useAnalytics.ts                ✅
+│   ├── 📁 lib/                               ✅
+│   │   ├── 📄 api.ts                         ✅ API client (fetch wrapper)
+│   │   ├── 📄 auth.ts                        ✅ JWT utilities
+│   │   ├── 📄 constants.ts                   ✅ App constants
+│   │   └── 📄 utils.ts                       ✅ Utility functions
+│   ├── 📁 types/                             ✅
+│   │   ├── 📄 api.ts                         ✅
+│   │   ├── 📄 analytics.ts                   ✅
+│   │   ├── 📄 link.ts                        ✅
+│   │   ├── 📄 tenant.ts                      ✅
+│   │   └── 📄 theme.ts                       ✅
+│   └── 📄 middleware.ts                      ✅ Subdomain router
+├── 📄 next.config.ts                         ✅
+├── 📄 tsconfig.json                          ✅
+├── 📄 package.json                           ✅
+├── 📄 eslint.config.mjs                      ✅
+└── 📄 .env.local                             ✅ Frontend environment variables
 ```
 
 ---
@@ -139,72 +127,61 @@ Frontend/                                      🟡 NOT YET SCAFFOLDED
 ## Backend/
 
 ```
-Backend/                                       🟡 NOT YET SCAFFOLDED
+Backend/                                       ✅ SCAFFOLDED
 ├── 📁 api/
-│   └── 📄 index.py                           🟡 Vercel serverless entry
+│   └── 📄 index.py                           ✅ Vercel serverless entry
 ├── 📁 app/
-│   ├── 📄 __init__.py                        🟡
-│   ├── 📄 main.py                            🟡 FastAPI app factory
-│   ├── 📄 config.py                          🟡 Pydantic settings
-│   ├── 📄 database.py                        🟡 Async SQLAlchemy
-│   ├── 📄 dependencies.py                    🟡 Shared dependencies
+│   ├── 📄 __init__.py                        ✅
+│   ├── 📄 main.py                            ✅ FastAPI app factory
+│   ├── 📄 config.py                          ✅ Pydantic settings
+│   ├── 📄 database.py                        ✅ Async SQLAlchemy + RLS
+│   ├── 📄 dependencies.py                    ✅ Shared dependencies
 │   ├── 📁 routers/
-│   │   ├── 📄 __init__.py                    🟡
-│   │   ├── 📄 auth.py                        🟡
-│   │   ├── 📄 tenants.py                     🟡
-│   │   ├── 📄 links.py                       🟡
-│   │   ├── 📄 analytics.py                   🟡
-│   │   ├── 📄 themes.py                      🟡
-│   │   └── 📄 public.py                      🟡
+│   │   ├── 📄 __init__.py                    ✅
+│   │   ├── 📄 auth.py                        ✅ Register, login, refresh
+│   │   ├── 📄 tenants.py                     ✅ GET/PUT tenant profile
+│   │   ├── 📄 links.py                       ✅ CRUD + reorder
+│   │   ├── 📄 analytics.py                   ✅ Click recording + aggregation
+│   │   ├── 📄 themes.py                      ✅ GET/PUT theme config
+│   │   └── 📄 public.py                      ✅ Public profile endpoint
 │   ├── 📁 models/
-│   │   ├── 📄 __init__.py                    🟡
-│   │   ├── 📄 tenant.py                      🟡
-│   │   ├── 📄 user.py                        🟡
-│   │   ├── 📄 link.py                        🟡
-│   │   ├── 📄 click_event.py                 🟡
-│   │   └── 📄 theme.py                       🟡
+│   │   ├── 📄 __init__.py                    ✅
+│   │   ├── 📄 tenant.py                      ✅ Tenant model
+│   │   ├── 📄 user.py                        ✅ User model
+│   │   ├── 📄 link.py                        ✅ Link model
+│   │   ├── 📄 click_event.py                 ✅ ClickEvent model
+│   │   └── 📄 theme.py                       ✅ ThemeConfig model
 │   ├── 📁 schemas/
-│   │   ├── 📄 __init__.py                    🟡
-│   │   ├── 📄 auth.py                        🟡
-│   │   ├── 📄 tenant.py                      🟡
-│   │   ├── 📄 link.py                        🟡
-│   │   ├── 📄 analytics.py                   🟡
-│   │   └── 📄 theme.py                       🟡
+│   │   ├── 📄 __init__.py                    ✅
+│   │   ├── 📄 auth.py                        ✅
+│   │   ├── 📄 tenant.py                      ✅
+│   │   ├── 📄 link.py                        ✅
+│   │   ├── 📄 analytics.py                   ✅
+│   │   └── 📄 theme.py                       ✅
 │   ├── 📁 services/
-│   │   ├── 📄 __init__.py                    🟡
-│   │   ├── 📄 auth_service.py                🟡
-│   │   ├── 📄 tenant_service.py              🟡
-│   │   ├── 📄 link_service.py                🟡
-│   │   ├── 📄 analytics_service.py           🟡
-│   │   └── 📄 theme_service.py               🟡
-│   ├── 📁 middleware/
-│   │   ├── 📄 __init__.py                    🟡
-│   │   ├── 📄 tenant_context.py              🟡
-│   │   └── 📄 cors.py                        🟡
+│   │   └── 📄 __init__.py                    ✅
 │   ├── 📁 security/
-│   │   ├── 📄 __init__.py                    🟡
-│   │   ├── 📄 jwt.py                         🟡
-│   │   ├── 📄 password.py                    🟡
-│   │   └── 📄 permissions.py                 🟡
+│   │   ├── 📄 __init__.py                    ✅
+│   │   ├── 📄 jwt.py                         ✅ JWT encode/decode
+│   │   ├── 📄 password.py                    ✅ bcrypt hashing
+│   │   └── 📄 permissions.py                 ✅ IDOR protection
+│   ├── 📁 middleware/
+│   │   ├── 📄 __init__.py                    ✅
+│   │   └── 📄 tenant_context.py              ✅ SET LOCAL per request
 │   └── 📁 utils/
-│       ├── 📄 __init__.py                    🟡
-│       └── 📄 seed.py                        🟡 Mock data generator
+│       ├── 📄 __init__.py                    ✅
+│       └── 📄 seed.py                        ✅ Mock data generator
 ├── 📁 migrations/
-│   ├── 📄 env.py                             🟡
-│   ├── 📁 versions/
-│   │   └── 📄 001_initial_schema.py          🟡
-│   └── 📄 script.py.mako                     🟡
+│   ├── 📄 env.py                             ✅ Async Alembic env
+│   ├── 📄 script.py.mako                     ✅
+│   └── 📁 versions/
+│       ├── 📄 0e04f23ba55f_initial_schema.py ✅ Tables + indexes
+│       └── 📄 0002_rls_policies.py           ✅ RLS policies
 ├── 📁 tests/
-│   ├── 📄 __init__.py                        🟡
-│   ├── 📄 conftest.py                        🟡
-│   ├── 📄 test_auth.py                       🟡
-│   ├── 📄 test_links.py                      🟡
-│   ├── 📄 test_tenant_isolation.py           🟡
-│   └── 📄 test_analytics.py                  🟡
-├── 📄 alembic.ini                            🟡
-├── 📄 requirements.txt                       🟡
-├── 📄 .env.example                           🟡
-└── 📄 Dockerfile                             🟡
+│   └── 📄 __init__.py                        ✅
+├── 📄 alembic.ini                            ✅
+├── 📄 requirements.txt                       ✅
+└── 📄 .env                                   ✅ Backend environment variables
 ```
 
 ---
@@ -214,4 +191,10 @@ Backend/                                       🟡 NOT YET SCAFFOLDED
 | Date | Phase | Action | Files Affected |
 |------|-------|--------|----------------|
 | 2026-04-07 | Pre | Created FILESYSTEM.md | `FILESYSTEM.md` |
-| — | — | *Awaiting Phase 1 scaffolding* | — |
+| 2026-04-07 | 1 | Scaffolded monorepo (Frontend + Backend) | All |
+| 2026-04-07 | 2 | Backend core: models, routers, schemas, security, migrations | `Backend/` |
+| 2026-04-07 | 2 | Applied RLS policies + seeded mock data | `migrations/`, `seed.py` |
+| 2026-04-07 | 3 | Frontend: auth, dashboard, components, hooks | `Frontend/src/` |
+| 2026-04-07 | 4 | Public profiles, theming, appearance page | `site/[slug]/`, `appearance/` |
+| 2026-04-07 | 4 | Landing page, login/register with back nav | `page.tsx`, `login/`, `register/` |
+| 2026-04-08 | 6 | Comprehensive README, env docs, FILESYSTEM update | `README.md`, `FILESYSTEM.md` |
